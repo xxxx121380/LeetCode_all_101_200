@@ -15,13 +15,27 @@ using namespace std;
 
 class Solution {
 public:
-
+    //118 杨辉三角
+    vector<vector<int>> generate(int numRows) {
+        vector<vector<int>> result;
+        vector<int> first = { 1 };
+        result.push_back(first);
+        for (int i = 0; i < numRows-1; i++) {
+            vector<int>nowFloor = { 1 };
+            for (int j = 0; j < i; j++) {
+                nowFloor.push_back(result[i][j]+result[i][j+1]);
+            }
+            nowFloor.push_back(1);
+            result.push_back(nowFloor);
+        }
+        return result;
+    }
 };
 int main()
 {
     Solution solution;
     vector<vector<int>>  test = { {1,2,3,4} ,{5,6,7,8},{9,10,11,12},{13,14,15,16} };
-    solution.spiralOrder(test);
+    solution.generate(3);
     //solution.divide(7,-3);
     return 0;
 }
