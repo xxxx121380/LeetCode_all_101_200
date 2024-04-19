@@ -29,13 +29,29 @@ public:
             result.push_back(nowFloor);
         }
         return result;
+    }   
+    //119 杨辉三角II
+    vector<int> getRow(int rowIndex) {
+        vector<int> first = { 1 };
+        if (rowIndex == 0)return first;
+        vector<int>second;
+        for (int i = 0; i < rowIndex; i++) {
+            second.clear();
+            second.push_back(1);
+            for (int j = 0; j < i; j++) {
+                second.push_back(first[j] +first[j + 1]);
+            }
+            second.push_back(1);
+            first = second;
+        }
+        return second;
     }
 };
 int main()
 {
     Solution solution;
     vector<vector<int>>  test = { {1,2,3,4} ,{5,6,7,8},{9,10,11,12},{13,14,15,16} };
-    solution.generate(3);
+    solution.getRow(3);
     //solution.divide(7,-3);
     return 0;
 }
