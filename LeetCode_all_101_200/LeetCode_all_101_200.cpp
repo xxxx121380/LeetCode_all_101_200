@@ -58,6 +58,14 @@ public:
         }
         return result;
     }
+    //136 只出现一次的数字
+    int singleNumber(vector<int>& nums) {
+        int result = 0;
+        for (int num : nums) {
+            result ^= num;
+        }
+        return result;
+    }
 };
 int main()
 {
