@@ -21,7 +21,7 @@ public:
         vector<int> first = { 1 };
         result.push_back(first);
         for (int i = 0; i < numRows-1; i++) {
-            vector<int>nowFloor = { 1 };
+            vector<int>nowFloor = { 1 }; 
             for (int j = 0; j < i; j++) {
                 nowFloor.push_back(result[i][j]+result[i][j+1]);
             }
@@ -46,12 +46,24 @@ public:
         }
         return second;
     }
+    //121 买卖股票的最佳时机
+    int maxProfit(vector<int>& prices) {
+        int result = 0;
+        int temp1 = 100001;
+        for (int i = 0; i < prices.size(); i++) {
+            if (prices[i] < temp1)
+                temp1 = prices[i];
+            if (prices[i] - temp1 > result)
+                result = prices[i] - temp1;
+        }
+        return result;
+    }
 };
 int main()
 {
     Solution solution;
-    vector<vector<int>>  test = { {1,2,3,4} ,{5,6,7,8},{9,10,11,12},{13,14,15,16} };
-    solution.getRow(3);
+    vector<int>  test = { 7,1,5,3,6,4 };
+    cout<<solution.maxProfit(test);
     //solution.divide(7,-3);
     return 0;
 }
