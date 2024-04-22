@@ -100,14 +100,36 @@ public:
         }
         return result;
     }
+    //168 Excel表列名称
+    //真难算啊，先找最大值，再往逐渐减少
+    string convertToTitle(int columnNumber) {
+        string s = "";
+        long long t = 26;
+        long long sum = 26;
+        while (columnNumber > sum) {
+            t *= 26;
+            sum += t;
+        }
+        t /= 26;
+        while (columnNumber > 26) {
+            int b = (columnNumber - t / 26) / t;
+            char temp = '@' + b;
+            s = s + temp;
+            columnNumber = columnNumber - t * b;
+            t /= 26;
+        }
+        char f = '@' + columnNumber;
+        s = s + f;
+        return s;
+    }
 };
 int main()
 {
     Solution solution;
-    vector<int>  test = { 7,1,5,3,6,4 };
-    string s = "A man, a plan, a canal: Panama";
-    solution.isPalindrome(s);
-    cout<<solution.maxProfit(test);
+    //vector<int>  test = { 7,1,5,3,6,4 };
+    //string s = "A man, a plan, a canal: Panama";
+    cout<<solution.convertToTitle(5473578);
+   // cout<<solution.maxProfit(test);
     //solution.divide(7,-3);
     return 0;
 }
