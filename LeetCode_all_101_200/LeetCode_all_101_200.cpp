@@ -47,6 +47,7 @@ public:
         return second;
     }
     //121 买卖股票的最佳时机
+    //检测到目前为止的最低价与当日价格差值是否更高
     int maxProfit(vector<int>& prices) {
         int result = 0;
         int temp1 = 100001;
@@ -58,7 +59,40 @@ public:
         }
         return result;
     }
+    //125 验证回文串
+    //题目虽然没说内存限制，但是把s处理后赋值给新字符串一定爆内存
+    bool isPalindrome(string s) {
+        int left = 0; int right = s.size() - 1;
+        while (left < right) {
+            char lw, rw;
+            if (s[left] <= 'Z' && s[left] >= 'A')
+            {
+                lw = s[left] + 32;
+            }
+            else if ((s[left] <= 'z' && s[left] >= 'a') || (s[left] <= '9' && s[left] >= '0'))
+                lw = s[left];
+            else {
+                left++;
+                continue;
+            }
+            if (s[right] <= 'Z' && s[right] >= 'A')
+            {
+                rw = s[right] + 32;
+            }
+            else if ((s[right] <= 'z' && s[right] >= 'a') || (s[right] <= '9' && s[right] >= '0'))
+                rw = s[right];
+            else {
+                right--;
+                continue;
+            }
+            if (lw != rw)return false;
+            left++;
+            right--;
+        }
+        return true;
+    }
     //136 只出现一次的数字
+    //hash 空间复杂度不符合要求，位运算最快（题目限制比较足）
     int singleNumber(vector<int>& nums) {
         int result = 0;
         for (int num : nums) {
@@ -71,6 +105,8 @@ int main()
 {
     Solution solution;
     vector<int>  test = { 7,1,5,3,6,4 };
+    string s = "A man, a plan, a canal: Panama";
+    solution.isPalindrome(s);
     cout<<solution.maxProfit(test);
     //solution.divide(7,-3);
     return 0;
