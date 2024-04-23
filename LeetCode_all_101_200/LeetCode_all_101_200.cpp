@@ -164,13 +164,23 @@ public:
         s = s + f;
         return s;
     }
+    //191 位1的个数
+    //辗转相除得1位
+    int hammingWeight(int n) {
+        int result=0;
+        while (n > 0) {
+            result += n % 2;
+            n = n / 2;
+        }
+        return result;
+    }
 };
 int main()
 {
     Solution solution;
     vector<int>  test = { -1 };
     //string s = "A man, a plan, a canal: Panama";
-    solution.findMissingRanges(test,-2,0);
+    solution.hammingWeight(11);
    // cout<<solution.maxProfit(test);
     //solution.divide(7,-3);
     return 0;
