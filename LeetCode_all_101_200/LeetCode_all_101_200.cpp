@@ -100,6 +100,48 @@ public:
         }
         return result;
     }
+    //163 缺失的区间
+    //找范围就行，考虑好左右边界
+    vector<vector<int>> findMissingRanges(vector<int>& nums, int lower, int upper) {
+        vector<vector<int>>result;
+        if (nums.empty()) {
+            vector<int> temp;
+            temp.push_back(lower);
+            temp.push_back(upper);
+            result.push_back(temp);
+            return result;
+        }
+        int left = lower;
+        int right = upper;
+        int t = 0;
+        //左额外区间
+        if (nums[0] > left) {
+            vector<int> temp;
+            temp.push_back(left);
+            temp.push_back(nums[0] - 1);
+            left = nums[0] + 1;
+            t++;
+            result.push_back(temp);
+        }
+        while (t < nums.size()) {
+            if (nums[t] > left) {
+                vector<int> temp;
+                temp.push_back(left);
+                temp.push_back(nums[t] - 1);
+                result.push_back(temp);
+            }
+            left = nums[t] + 1;
+            t++;
+        }
+        t--;
+        if (nums[t] < right) {
+            vector<int> temp;
+            temp.push_back(nums[t] + 1);
+            temp.push_back(right);
+            result.push_back(temp);
+        }
+        return result;
+    }
     //168 Excel表列名称
     //真难算啊，先找最大值，再往逐渐减少
     string convertToTitle(int columnNumber) {
@@ -126,9 +168,9 @@ public:
 int main()
 {
     Solution solution;
-    //vector<int>  test = { 7,1,5,3,6,4 };
+    vector<int>  test = { -1 };
     //string s = "A man, a plan, a canal: Panama";
-    cout<<solution.convertToTitle(5473578);
+    solution.findMissingRanges(test,-2,0);
    // cout<<solution.maxProfit(test);
     //solution.divide(7,-3);
     return 0;
