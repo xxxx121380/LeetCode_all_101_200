@@ -164,6 +164,20 @@ public:
         s = s + f;
         return s;
     }
+    //169 多数元素
+    //读两遍
+    int majorityElement(vector<int>& nums) {
+        unordered_map<int, int> sum;
+        int result=0;
+        for (int i = 0; i < nums.size(); i++) {
+            sum[nums[i]]++;
+        }
+        for (const auto& pair : sum) {
+            if (pair.second > nums.size() / 2)
+                result= pair.first;
+        }
+        return result;
+    }
     //191 位1的个数
     //辗转相除得1位
     int hammingWeight(int n) {
