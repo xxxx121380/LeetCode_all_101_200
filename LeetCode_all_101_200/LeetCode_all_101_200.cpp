@@ -1,5 +1,6 @@
 ﻿// LeetCode_all_101_200.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
 //
+
 #include <iostream>
 #include <vector>
 #include <stack>
@@ -99,6 +100,34 @@ public:
             result ^= num;
         }
         return result;
+    }
+    //157 用 Read4 读取 N 个字符
+    //重点在于理解题意，相当于吧read4的内容多次读取出来，并且直接给到read的buf中
+    /**
+    * @param buf Destination buffer
+    * @param n   Number of characters to read
+    * @return    The number of actual characters read
+    */
+    int read(char* buf, int n) {
+
+        int totalRead = 0;
+        char* temp = new char[4];
+        int currentRead = 0;
+
+        do {
+            //本地没写read4的API
+            //currentRead = read4(temp);
+            currentRead = 4;
+            int spaceLeft = n - totalRead;
+            int toCopy = std::min(currentRead, spaceLeft);
+            //这样是过不去题解的，得用strncpy
+            //strncpy(buf + totalRead,temp, toCopy);
+            strncpy_s(buf + totalRead, spaceLeft,temp, toCopy);
+            totalRead += toCopy;
+        } while (currentRead == 4 && totalRead < n);
+
+        delete[] temp;
+        return totalRead;
     }
     //163 缺失的区间
     //找范围就行，考虑好左右边界
