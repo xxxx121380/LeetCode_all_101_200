@@ -178,6 +178,29 @@ public:
         }
         return result;
     }
+    //171 Excel 表列序号
+    int titleToNumber(string columnTitle) {
+        string s = columnTitle;
+        int result = 0;
+        long long t = 1;
+        reverse(s.begin(), s.end());
+        for (int i = 0; i < s.size(); i++) {
+            char b = s[i];
+            result = result + t * (b - 'A'+1);
+            t *= 26;
+        }
+        return result;
+    }
+    //190 颠倒二进制位
+    uint32_t reverseBits(uint32_t n) {
+        uint32_t reversedNum = 0;
+        do {
+            uint32_t lastDigit = n % 2;  // 获取最后一位
+            reversedNum = reversedNum * 2 + lastDigit;  // 添加到反转数中
+            n /= 2;  // 移除最后一位
+        } while (n > 0);
+        return reversedNum;
+    }
     //191 位1的个数
     //辗转相除得1位
     int hammingWeight(int n) {
@@ -194,7 +217,8 @@ int main()
     Solution solution;
     vector<int>  test = { -1 };
     //string s = "A man, a plan, a canal: Panama";
-    solution.hammingWeight(11);
+    uint32_t t = 0b1111111111111111111111111111101;
+    solution.reverseBits(t);
    // cout<<solution.maxProfit(test);
     //solution.divide(7,-3);
     return 0;
