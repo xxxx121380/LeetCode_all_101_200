@@ -220,6 +220,14 @@ public:
         }
         return result;
     }
+    //175 组合两个表
+    //From 表名 表简写可以方便查询语句书写
+    //其中From基本以一张主表进行
+    //左连接的格式是 LEFT JOIN 表名 ON 相等栏条件
+    /*
+    Select p.firstName,p.lastName,a.city,a.state From Person p
+    LEFT JOIN Address a ON p.PersonId = a.PersonId
+    */
     //183 从不订购的客户
     //运用数据库的左连接，首先是Select 栏目名 As 显示内容
     //然后是From 从某个表
