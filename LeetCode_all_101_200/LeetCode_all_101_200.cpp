@@ -220,6 +220,17 @@ public:
         }
         return result;
     }
+    //183 从不订购的客户
+    //运用数据库的左连接，首先是Select 栏目名 As 显示内容
+    //然后是From 从某个表
+    //左连接的意思把两个表连起来，并且以左边的为主表是，其中C表的id需要=O表的顾客id
+    //如果没有 就认为是没订购过的，输出结果
+    /*
+    SELECT Customers.name AS Customers
+    FROM Customers
+    LEFT JOIN Orders ON Customers.id = Orders.customerId
+    WHERE Orders.id IS NULL;
+    */
     //190 颠倒二进制位
     uint32_t reverseBits(uint32_t n) {
         uint32_t reversedNum = 0;
