@@ -228,6 +228,14 @@ public:
     Select p.firstName,p.lastName,a.city,a.state From Person p
     LEFT JOIN Address a ON p.PersonId = a.PersonId
     */
+    //181 超过经理收入的员工
+    //JOIN 语句 就是自表连接
+    /*
+    SELECT e1.name AS Employee
+    FROM Employee e1
+    JOIN Employee e2 ON e1.managerId = e2.id
+    WHERE e1.salary > e2.salary;
+    */
     //183 从不订购的客户
     //运用数据库的左连接，首先是Select 栏目名 As 显示内容
     //然后是From 从某个表
